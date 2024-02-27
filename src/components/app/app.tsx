@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import './app.scss';
+
 export const App = () => {
   const [count, setCount] = useState<number>(0);
 
