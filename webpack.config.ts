@@ -1,8 +1,14 @@
-const path = require('path');
-const HtmlWebpackPlugin = require(`html-webpack-plugin`);
-const webpack = require(`webpack`);
+import path from 'path';
+import webpack, { type Configuration } from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-module.exports = (env) => {
+type Mode = `development` | `production`;
+
+interface EnvVariables {
+  mode: Mode;
+}
+
+export default (env: EnvVariables): Configuration => {
   const { mode } = env;
 
   return {
