@@ -19,7 +19,7 @@ export default (env: EnvVariables): WebpackConfigurationType => {
 
   return {
     mode: mode ?? `development`,
-    entry: path.resolve(__dirname, `src`, `index.ts`),
+    entry: path.resolve(__dirname, `src`, `index.tsx`),
     output: {
       filename: `[name].[contenthash:8].js`,
       path: path.resolve(__dirname, `dist`),
