@@ -1,15 +1,21 @@
 import path from 'path';
 import webpack, { type Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 
 type Mode = `development` | `production`;
 
 interface EnvVariables {
   mode: Mode;
+  port: number;
 }
 
-export default (env: EnvVariables): Configuration => {
-  const { mode } = env;
+type WebpackConfigurationType = Configuration & DevServerConfiguration;
+
+export default (env: EnvVariables): WebpackConfigurationType => {
+  const { mode, port } = env;
+
+  const isDev = mode == `development`;
 
   return {
     mode: mode ?? `development`,
@@ -23,8 +29,8 @@ export default (env: EnvVariables): Configuration => {
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, `public`, `index.html`),
       }),
-      new webpack.ProgressPlugin(),
-    ],
+      isDev && new webpack.ProgressPlugin(),
+    ].filter(Boolean),
     module: {
       rules: [
         {
@@ -37,5 +43,12 @@ export default (env: EnvVariables): Configuration => {
     resolve: {
       extensions: [`.tsx`, `.ts`, `.js`, `.json`],
     },
+    devtool: isDev && `inline-source-map`,
+    devServer: isDev
+      ? {
+          port: port ?? 3000,
+          open: true,
+        }
+      : undefined,
   };
 };
