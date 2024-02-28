@@ -1,21 +1,17 @@
-import { useState } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 
 import classes from './app.module.scss';
 
 export const App = () => {
-  const [count, setCount] = useState<number>(0);
-
   return (
     <div className='app'>
       <h1>Webpack Sandbox</h1>
-      <div>
-        <p>Counter:</p>
-        <p className={classes.value}>{count}</p>
-        <div className={classes.buttons}>
-          <button onClick={() => setCount((prev) => prev + 1)}>inc</button>
-          <button onClick={() => setCount((prev) => prev - 1)}>dec</button>
-        </div>
+      <div className={classes.nav}>
+        <Link to={`/`}>Main page</Link>
+        <Link to={`/about`}>About page</Link>
+        <Link to={`/shop`}>Shop page</Link>
       </div>
+      <Outlet />
     </div>
   );
 };
