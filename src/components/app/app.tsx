@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import './app.scss';
+import classes from './app.module.scss';
 
 export const App = () => {
   const [count, setCount] = useState<number>(0);
@@ -10,8 +10,8 @@ export const App = () => {
       <h1>Webpack Sandbox</h1>
       <div>
         <p>Counter:</p>
-        <p className='value'>{count}</p>
-        <div className='buttons'>
+        <p className={classes.value}>{count}</p>
+        <div className={classes.buttons}>
           <button onClick={() => setCount((prev) => prev + 1)}>inc</button>
           <button onClick={() => setCount((prev) => prev - 1)}>dec</button>
         </div>

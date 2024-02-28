@@ -8,11 +8,20 @@ export const buildLoaders = (options: BuildOptions): ModuleOptions[`rules`] => {
 
   const isDev = mode === `development`;
 
+  const cssModulesLoader = {
+    loader: 'css-loader',
+    options: {
+      modules: {
+        localIdentName: isDev ? `[path][name]__[local]` : `[hash:base64:8]`,
+      },
+    },
+  };
+
   const scssLoader = {
     test: /\.s[ac]ss$/i,
     use: [
       isDev ? `style-loader` : MiniCssExtractPlugin.loader,
-      `css-loader`,
+      cssModulesLoader,
       `sass-loader`,
     ],
   };
