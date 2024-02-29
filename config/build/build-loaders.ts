@@ -8,6 +8,11 @@ export const buildLoaders = (options: BuildOptions): ModuleOptions[`rules`] => {
 
   const isDev = mode === `development`;
 
+  const assetsLoader = {
+    test: /\.(png|jpg|jpeg|gif)$/i,
+    type: 'asset/resource',
+  };
+
   const cssModulesLoader = {
     loader: 'css-loader',
     options: {
@@ -32,5 +37,5 @@ export const buildLoaders = (options: BuildOptions): ModuleOptions[`rules`] => {
     exclude: /node_modules/,
   };
 
-  return [scssLoader, tsLoader];
+  return [assetsLoader, scssLoader, tsLoader];
 };
