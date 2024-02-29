@@ -10,11 +10,17 @@ export const buildLoaders = (options: BuildOptions): ModuleOptions[`rules`] => {
 
   const assetsLoader = {
     test: /\.(png|jpg|jpeg|gif)$/i,
-    type: 'asset/resource',
+    type: `asset/resource`,
+  };
+
+  const svgLoader = {
+    test: /\.svg$/i,
+    issuer: /\.[jt]sx?$/,
+    use: [{ loader: `@svgr/webpack`, options: { icon: true } }],
   };
 
   const cssModulesLoader = {
-    loader: 'css-loader',
+    loader: `css-loader`,
     options: {
       modules: {
         localIdentName: isDev ? `[path][name]__[local]` : `[hash:base64:8]`,
@@ -37,5 +43,5 @@ export const buildLoaders = (options: BuildOptions): ModuleOptions[`rules`] => {
     exclude: /node_modules/,
   };
 
-  return [assetsLoader, scssLoader, tsLoader];
+  return [assetsLoader, svgLoader, scssLoader, tsLoader];
 };
