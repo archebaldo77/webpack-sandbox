@@ -13,7 +13,7 @@ export const buildWebpack = (options: BuildOptions): Configuration => {
 
   return {
     mode: mode,
-    entry: paths.src,
+    entry: paths.entry,
     output: {
       filename: `[name].[contenthash:8].js`,
       path: paths.dist,
@@ -23,7 +23,7 @@ export const buildWebpack = (options: BuildOptions): Configuration => {
     module: {
       rules: buildLoaders(options),
     },
-    resolve: buildResolvers(),
+    resolve: buildResolvers(options),
     devtool: isDev && `inline-source-map`,
     devServer: isDev ? buildDevServer(options) : undefined,
   };

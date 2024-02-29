@@ -1,5 +1,6 @@
 export interface BuildPaths {
   src: string;
+  entry: string;
   dist: string;
   html: string;
 }
@@ -7,14 +8,14 @@ export interface BuildPaths {
 export type BuildMode = `development` | `production`;
 
 export interface BuildOptions {
-  paths?: BuildPaths;
+  paths: BuildPaths;
   mode?: BuildMode;
   port?: number;
   analyzer?: boolean;
 }
 
 export interface BuildEnv {
-  mode: BuildMode;
-  port: number;
+  mode?: BuildMode;
+  port?: number;
   analyzer?: boolean;
 }

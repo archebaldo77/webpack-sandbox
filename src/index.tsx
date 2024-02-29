@@ -4,9 +4,9 @@ import { Suspense } from 'react';
 
 import { App } from './components/app/app';
 
-import { MainPageLazy } from './pages/main/main.lazy';
-import { AboutPageLazy } from './pages/about/about.lazy';
-import { ShopPageLazy } from './pages/shop/shop.lazy';
+import { MainPageLazy } from '@/pages/main/main.lazy';
+import { AboutPageLazy } from '@/pages/about/about.lazy';
+import { ShopPageLazy } from '@/pages/shop/shop.lazy';
 
 const router = createBrowserRouter([
   {
