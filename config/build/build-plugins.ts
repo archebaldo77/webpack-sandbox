@@ -1,7 +1,7 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import { ProgressPlugin } from 'webpack';
+import { DefinePlugin, ProgressPlugin } from 'webpack';
 
 import { type Configuration } from 'webpack';
 import { type BuildOptions } from './types/types';
@@ -17,6 +17,9 @@ export const buildPlugins = (
   const plugins: Configuration[`plugins`] = [
     new HtmlWebpackPlugin({
       template: paths.html,
+    }),
+    new DefinePlugin({
+      __IS_DEV__: mode === `development`,
     }),
   ];
 

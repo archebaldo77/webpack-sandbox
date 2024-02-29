@@ -8,6 +8,7 @@ const MainPage = () => {
   return (
     <div>
       <h1>Main page</h1>
+      {__IS_DEV__ && `This text is visible only in the mode DEV (Tree Shaking)`}
       <div className={classes.avatars}>
         <img src={avatarPNG} width={100} height={100} alt='Avatar' />
         <img src={avatarJPG} width={100} height={100} alt='Avatar' />
