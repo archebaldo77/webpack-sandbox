@@ -1,5 +1,6 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { DefinePlugin, ProgressPlugin } from 'webpack';
 
@@ -24,7 +25,7 @@ export const buildPlugins = (
   ];
 
   if (isDev) {
-    plugins.push(new ProgressPlugin());
+    plugins.push(new ProgressPlugin(), new ForkTsCheckerWebpackPlugin());
   }
 
   if (isProd) {
